@@ -24,3 +24,20 @@ npm test
 
 The user that is running the NodeJs app must be able to run the ``xen list``
 command and list files under ``/etc/xen``.
+
+Here is how to deploy on a Debian 7.x server. Can be adapted to run on any Debian
+you can just adapt the NodeJS version (latest is better)
+
+## Install NodeJS
+
+    # Using Debian, as root
+    curl -sL https://deb.nodesource.com/setup_6.x | bash -
+    apt-get install -y nodejs
+
+## Install PM2
+
+[PM2](http://pm2.keymetrics.io/) is a process manager for NodeJS
+
+    sudo npm install pm2 -g
+    # PM2 will boot at startup
+    pm2 startup

@@ -4,22 +4,27 @@ var fs = require('fs');
 const notVms = ["old", "scripts", "xend", "xl"]
 
 exports.runningXenInstances = function() {
-  var stdout = proc.execSync('xen list');
+  var stdout = proc.execSync('xen list').toString();
   var lines = stdout.split('\n');
   // remove one line, starting at the first position
-  lines.splice(0,2);
-  vms = lines.map(function(element) {
-    vm = {}
-    info = element.split(' ').filter(function(el) {
-      return el != ''
+  lines.splice(0,2)
+
+  vms = lines.filter(function(el) {
+    // remove last line
+    return el != ''
     })
-    vm.name = info[0]
-    vm.id = parseInt(info[1])
-    vm.ram = parseInt(info[2])
-    vm.vcpu = parseInt(info[3])
-    vm.state = "running"
-    return vm
-  })
+    .map(function(element) {
+      vm = {}
+      info = element.split(' ').filter(function(el) {
+        return el != ''
+      })
+      vm.name = info[0]
+      vm.id = parseInt(info[1])
+      vm.ram = parseInt(info[2])
+      vm.vcpu = parseInt(info[3])
+      vm.state = "running"
+      return vm
+    })
   return vms;
 }
 

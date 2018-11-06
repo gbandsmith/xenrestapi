@@ -41,3 +41,9 @@ you can just adapt the NodeJS version (latest is better)
     sudo npm install pm2 -g
     # PM2 will boot at startup
     pm2 startup
+
+## Pull the project and run it via PM2
+
+    git clone https://github.com/gbandsmith/xenrestapi.git
+    pm2 start xenrestapi/bin/www --name xenrestapi
+    pm2 save

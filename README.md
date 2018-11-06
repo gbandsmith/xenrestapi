@@ -23,4 +23,4 @@ npm test
 # Deploy ?
 
 The user that is running the NodeJs app must be able to run the ``xen list``
-command and list files under `/etc/xen``.
+command and list files under ``/etc/xen``.
